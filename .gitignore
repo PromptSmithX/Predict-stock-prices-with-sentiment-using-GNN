@@ -1,0 +1,21 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+.venv/
+env/
+venv/
+
+# Data & Models
+data/raw/*
+data/processed/*
+data/embeddings/*
+!data/**/.gitkeep
+*.pth
+*.pt
+*.h5
+checkpoints/
+logs/
+
+# API keys
+.env

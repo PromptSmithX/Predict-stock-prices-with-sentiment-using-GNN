@@ -8,6 +8,7 @@ venv/
 
 # Data & Models
 
+data/raw/*
 data/processed/*
 data/embeddings/*
 !data/**/.gitkeep

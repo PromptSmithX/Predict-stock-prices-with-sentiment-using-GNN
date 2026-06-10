@@ -72,6 +72,7 @@ REQUIRED_INDUSTRY_COLUMNS = [
 ]
 
 CORR_EDGE_ATTR_COLUMNS = ["corr", "abs_corr"]
+TARGET_RETURN_COLUMN = "label"
 VALID_FILL_MISSING_FEATURES = {"zero", "error"}
 
 
@@ -175,6 +176,23 @@ def _feature_matrix_to_tensor(
 
     features = features.fillna(0.0)
     return torch.as_tensor(features.to_numpy(dtype=np.float32), dtype=torch.float)
+
+
+def _series_to_float_tensor(
+    series: pd.Series,
+    fill_missing_features: str,
+    column_name: str,
+) -> torch.FloatTensor:
+    values = pd.to_numeric(series, errors="coerce").replace([np.inf, -np.inf], np.nan)
+    if fill_missing_features == "error" and values.isna().any():
+        raise ValueError(f"{column_name} contains missing values.")
+    values = values.fillna(0.0)
+    return torch.as_tensor(values.to_numpy(dtype=np.float32), dtype=torch.float)
+
+
+def _target_series_to_float_tensor(series: pd.Series) -> torch.FloatTensor:
+    values = pd.to_numeric(series, errors="coerce").replace([np.inf, -np.inf], np.nan)
+    return torch.as_tensor(values.to_numpy(dtype=np.float32), dtype=torch.float)
 
 
 def prepare_stock_df(stock_df: pd.DataFrame) -> pd.DataFrame:
@@ -492,9 +510,19 @@ def build_daily_hgt_graph(
     sector_etfs = [sector_etf_map[sector] for sector in sectors]
 
     data["stock"].x = stock_x
+    data["stock"].close = _series_to_float_tensor(
+        stock_daily["close"],
+        fill_missing_features,
+        "stock.close",
+    )
     data["stock"].ticker_id = stock_ids
     data["stock"].sector_id = stock_sector_ids
     data["stock"].tickers = tickers
+    if TARGET_RETURN_COLUMN in stock_daily.columns:
+        data["stock"].y_return = _target_series_to_float_tensor(
+            stock_daily[TARGET_RETURN_COLUMN]
+        )
+        data["stock"].y_close = data["stock"].close * (1.0 + data["stock"].y_return)
 
     data["industry"].x = industry_x
     data["industry"].sector_id = industry_ids
@@ -671,6 +699,7 @@ __all__ = [
     "REQUIRED_INDUSTRY_COLUMNS",
     "REQUIRED_STOCK_COLUMNS",
     "STOCK_FEATURE_COLUMNS",
+    "TARGET_RETURN_COLUMN",
     "build_corr_edges_for_day",
     "build_daily_graphs",
     "build_daily_hgt_graph",

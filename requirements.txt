@@ -1,6 +1,9 @@
 numpy
 pandas
+pandas_datareader
+requests
 torch
 torch-geometric
 transformers
 tqdm
+yfinance

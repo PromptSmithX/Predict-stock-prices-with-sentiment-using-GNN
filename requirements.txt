@@ -7,3 +7,4 @@ torch-geometric
 transformers
 tqdm
 yfinance
+streamlit

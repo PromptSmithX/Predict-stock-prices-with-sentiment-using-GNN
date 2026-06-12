@@ -11,6 +11,7 @@ venv/
 # data/raw/*
 # data/processed/*
 # data/embeddings/*
+data/live/
 !data/**/.gitkeep
 *.pth
 # *.pt

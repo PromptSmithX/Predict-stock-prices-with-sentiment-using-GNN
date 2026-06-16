@@ -13,7 +13,10 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
-from src.data_pipeline.preprocessor import add_ohlcv_stock_features
+from src.data_pipeline.preprocessor import (
+    add_next_day_return_label,
+    add_ohlcv_stock_features,
+)
 from src.features.bert_extractor import (
     add_rolling_sentiment_features,
     aggregate_daily_stock_sentiment,
@@ -116,6 +119,7 @@ def run_full_feature_pipeline(
         stock_feature_df=price_feature_df,
         rolling_sentiment_df=rolling_sentiment_df,
     )
+    final_df = add_next_day_return_label(final_df, overwrite_existing=True)
 
     final_output_path.parent.mkdir(parents=True, exist_ok=True)
     final_df.to_csv(final_output_path, index=False)

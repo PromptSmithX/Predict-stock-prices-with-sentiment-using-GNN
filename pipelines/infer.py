@@ -18,6 +18,7 @@ PROJECT_ROOT = Path(__file__).resolve().parents[1]
 if str(PROJECT_ROOT) not in sys.path:
     sys.path.insert(0, str(PROJECT_ROOT))
 
+from src.data_pipeline.preprocessor import add_next_day_return_label  # noqa: E402
 from src.evaluation.backtest import backtest_topk_long_only  # noqa: E402
 from src.features.graph_builder import build_daily_graphs, build_graph_sequences  # noqa: E402
 from src.training.trainer import (  # noqa: E402
@@ -132,50 +133,6 @@ def build_target_date_lookup(
     for row in df.dropna(subset=["target_date"]).itertuples(index=False):
         lookup[(row.ticker, row.date)] = row.target_date
     return lookup
-
-
-def add_next_day_return_label(
-    stock_feature_df: pd.DataFrame,
-    label_column: str = "label",
-) -> pd.DataFrame:
-    """Add next-day return labels in memory when feature CSV lacks them."""
-    if label_column in stock_feature_df.columns:
-        return stock_feature_df.copy(deep=True)
-
-    required_columns = ["date", "ticker", "close"]
-    missing_columns = [
-        column for column in required_columns
-        if column not in stock_feature_df.columns
-    ]
-    if missing_columns:
-        raise ValueError(
-            "Cannot create label because stock_feature_df is missing columns: "
-            f"{missing_columns}"
-        )
-
-    df = stock_feature_df.copy(deep=True)
-    df["date"] = pd.to_datetime(df["date"], errors="coerce").dt.normalize()
-    if df["date"].isna().any():
-        raise ValueError("stock_feature_df contains invalid date values.")
-
-    if df["ticker"].isna().any():
-        raise ValueError("stock_feature_df.ticker contains missing values.")
-    df["ticker"] = df["ticker"].astype(str).str.strip()
-    if df["ticker"].eq("").any():
-        raise ValueError("stock_feature_df.ticker contains empty string values.")
-
-    df["close"] = pd.to_numeric(df["close"], errors="coerce")
-    original_order_column = "__original_order"
-    df[original_order_column] = range(len(df))
-    sorted_df = df.sort_values(["ticker", "date"]).copy()
-    next_close = sorted_df.groupby("ticker")["close"].shift(-1)
-    sorted_df[label_column] = next_close / sorted_df["close"] - 1.0
-
-    return (
-        sorted_df.sort_values(original_order_column)
-        .drop(columns=[original_order_column])
-        .reset_index(drop=True)
-    )
 
 
 def load_feature_frames_for_inference(

@@ -33,6 +33,18 @@ OHLCV_FEATURE_COLUMNS = [
 FillMethod = Literal["keep_nan", "zero", "drop"]
 
 
+def _validate_required_columns(
+    df: pd.DataFrame,
+    required_columns: list[str],
+) -> None:
+    missing_columns = [
+        column for column in required_columns
+        if column not in df.columns
+    ]
+    if missing_columns:
+        raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
+
+
 def _safe_divide(numerator: pd.Series, denominator: pd.Series) -> pd.Series:
     """Divide two aligned Series while returning NaN for zero denominators."""
     safe_denominator = denominator.where(denominator != 0, np.nan)
@@ -112,11 +124,7 @@ def add_ohlcv_stock_features(
         How to handle NaN values created by rolling windows:
         keep_nan, zero, or drop.
     """
-    missing_columns = [
-        column for column in REQUIRED_OHLCV_COLUMNS if column not in price_df.columns
-    ]
-    if missing_columns:
-        raise ValueError(f"Missing required columns: {', '.join(missing_columns)}")
+    _validate_required_columns(price_df, REQUIRED_OHLCV_COLUMNS)
 
     valid_fill_methods = {"keep_nan", "zero", "drop"}
     if fill_method not in valid_fill_methods:
@@ -152,8 +160,53 @@ def add_ohlcv_stock_features(
     return df
 
 
+def add_next_day_return_label(
+    stock_feature_df: pd.DataFrame,
+    label_column: str = "label",
+    overwrite_existing: bool = False,
+) -> pd.DataFrame:
+    """Add next-session return labels by ticker without mutating input."""
+    if label_column in stock_feature_df.columns and not overwrite_existing:
+        return stock_feature_df.copy(deep=True)
+
+    _validate_required_columns(stock_feature_df, ["date", "ticker", "close"])
+
+    df = stock_feature_df.copy(deep=True)
+    df["date"] = pd.to_datetime(df["date"], errors="coerce").dt.normalize()
+    if df["date"].isna().any():
+        raise ValueError("stock_feature_df contains invalid date values.")
+
+    if df["ticker"].isna().any():
+        raise ValueError("stock_feature_df.ticker contains missing values.")
+    df["ticker"] = df["ticker"].astype(str).str.strip()
+    if df["ticker"].eq("").any():
+        raise ValueError("stock_feature_df.ticker contains empty string values.")
+
+    if df.duplicated(["date", "ticker"]).any():
+        raise ValueError("stock_feature_df contains duplicate date/ticker rows.")
+
+    df["close"] = pd.to_numeric(df["close"], errors="coerce")
+    original_order_column = "__original_order"
+    df[original_order_column] = range(len(df))
+
+    sorted_df = df.sort_values(["ticker", "date"]).copy()
+    next_close = sorted_df.groupby("ticker")["close"].shift(-1)
+    sorted_df[label_column] = _safe_divide(
+        next_close - sorted_df["close"],
+        sorted_df["close"],
+    )
+    sorted_df[label_column] = sorted_df[label_column].replace([np.inf, -np.inf], np.nan)
+
+    return (
+        sorted_df.sort_values(original_order_column)
+        .drop(columns=[original_order_column])
+        .reset_index(drop=True)
+    )
+
+
 __all__ = [
     "OHLCV_FEATURE_COLUMNS",
     "REQUIRED_OHLCV_COLUMNS",
+    "add_next_day_return_label",
     "add_ohlcv_stock_features",
 ]

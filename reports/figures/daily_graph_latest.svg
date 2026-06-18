@@ -1,0 +1,79 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="1600" height="1000" viewBox="0 0 1600 1000">
+<rect width="100%" height="100%" fill="#ffffff"/>
+<text x="800.0" y="58.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="34" font-weight="700" fill="#263238">Daily Heterogeneous Stock-Sector Graph</text>
+<text x="800.0" y="94.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500" fill="#667085">Graph date: 2026-06-05</text>
+<line x1="1186.2" y1="430.0" x2="1280.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="226.2" y1="430.0" x2="320.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="413.8" y1="430.0" x2="320.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="546.2" y1="430.0" x2="640.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="866.2" y1="430.0" x2="960.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="733.8" y1="430.0" x2="640.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="1053.8" y1="430.0" x2="960.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="1373.8" y1="430.0" x2="1280.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="1280.0" y1="655.0" x2="1280.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="960.0" y1="655.0" x2="960.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="640.0" y1="655.0" x2="640.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<line x1="320.0" y1="655.0" x2="320.0" y2="530.0" stroke="#8c97a3" stroke-width="2.0" stroke-opacity="0.42"/>
+<path d="M 1186.2 430.0 Q 866.2 388.0 546.2 430.0" fill="none" stroke="#168363" stroke-width="2.4" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 1186.2 430.0 Q 897.1 503.7 640.0 655.0" fill="none" stroke="#c74343" stroke-width="2.2" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 1186.2 430.0 Q 742.6 501.8 320.0 655.0" fill="none" stroke="#c74343" stroke-width="2.4" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 226.2 430.0 Q 320.0 472.0 413.8 430.0" fill="none" stroke="#168363" stroke-width="4.7" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 226.2 430.0 Q 413.1 579.4 640.0 655.0" fill="none" stroke="#168363" stroke-width="1.9" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 226.2 430.0 Q 234.4 558.7 320.0 655.0" fill="none" stroke="#168363" stroke-width="4.8" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 413.8 430.0 Q 480.0 472.0 546.2 430.0" fill="none" stroke="#c74343" stroke-width="2.5" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 413.8 430.0 Q 328.1 526.3 320.0 655.0" fill="none" stroke="#168363" stroke-width="4.9" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 546.2 430.0 Q 640.0 472.0 733.8 430.0" fill="none" stroke="#168363" stroke-width="2.9" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 546.2 430.0 Q 960.0 472.0 1373.8 430.0" fill="none" stroke="#168363" stroke-width="2.5" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 546.2 430.0 Q 900.8 582.7 1280.0 655.0" fill="none" stroke="#168363" stroke-width="4.0" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 866.2 430.0 Q 960.0 472.0 1053.8 430.0" fill="none" stroke="#168363" stroke-width="3.5" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 866.2 430.0 Q 1120.0 472.0 1373.8 430.0" fill="none" stroke="#c74343" stroke-width="3.2" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 866.2 430.0 Q 874.4 558.7 960.0 655.0" fill="none" stroke="#168363" stroke-width="3.5" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 733.8 430.0 Q 648.1 526.3 640.0 655.0" fill="none" stroke="#168363" stroke-width="2.9" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 733.8 430.0 Q 506.8 505.6 320.0 655.0" fill="none" stroke="#c74343" stroke-width="2.3" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 1053.8 430.0 Q 1213.8 472.0 1373.8 430.0" fill="none" stroke="#c74343" stroke-width="1.6" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 1053.8 430.0 Q 968.1 526.3 960.0 655.0" fill="none" stroke="#168363" stroke-width="2.7" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 1373.8 430.0 Q 1288.1 526.3 1280.0 655.0" fill="none" stroke="#168363" stroke-width="2.1" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 1373.8 430.0 Q 994.6 502.3 640.0 655.0" fill="none" stroke="#168363" stroke-width="2.1" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 1280.0 655.0 Q 1120.0 613.0 960.0 655.0" fill="none" stroke="#168363" stroke-width="1.9" stroke-opacity="0.74" stroke-linecap="round"/>
+<path d="M 960.0 655.0 Q 800.0 613.0 640.0 655.0" fill="none" stroke="#168363" stroke-width="2.5" stroke-opacity="0.74" stroke-linecap="round"/>
+<rect x="234.0" y="502.0" width="172" height="56" rx="8" fill="#f1b44c" stroke="#263238" stroke-opacity="0.18"/>
+<text x="320.0" y="537.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Energy</text>
+<circle cx="226.2" cy="430.0" r="36" fill="#ffffff" stroke="#f1b44c" stroke-width="5"/>
+<text x="226.2" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">COP</text>
+<circle cx="413.8" cy="430.0" r="36" fill="#ffffff" stroke="#f1b44c" stroke-width="5"/>
+<text x="413.8" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">CVX</text>
+<circle cx="320.0" cy="655.0" r="36" fill="#ffffff" stroke="#f1b44c" stroke-width="5"/>
+<text x="320.0" y="662.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">XOM</text>
+<rect x="554.0" y="502.0" width="172" height="56" rx="8" fill="#6172d8" stroke="#263238" stroke-opacity="0.18"/>
+<text x="640.0" y="537.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Financials</text>
+<circle cx="546.2" cy="430.0" r="36" fill="#ffffff" stroke="#6172d8" stroke-width="5"/>
+<text x="546.2" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">GS</text>
+<circle cx="733.8" cy="430.0" r="36" fill="#ffffff" stroke="#6172d8" stroke-width="5"/>
+<text x="733.8" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">JPM</text>
+<circle cx="640.0" cy="655.0" r="36" fill="#ffffff" stroke="#6172d8" stroke-width="5"/>
+<text x="640.0" y="662.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">V</text>
+<rect x="874.0" y="502.0" width="172" height="56" rx="8" fill="#2fa6a0" stroke="#263238" stroke-opacity="0.18"/>
+<text x="960.0" y="537.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Healthcare</text>
+<circle cx="866.2" cy="430.0" r="36" fill="#ffffff" stroke="#2fa6a0" stroke-width="5"/>
+<text x="866.2" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">JNJ</text>
+<circle cx="1053.8" cy="430.0" r="36" fill="#ffffff" stroke="#2fa6a0" stroke-width="5"/>
+<text x="1053.8" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">LLY</text>
+<circle cx="960.0" cy="655.0" r="36" fill="#ffffff" stroke="#2fa6a0" stroke-width="5"/>
+<text x="960.0" y="662.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">UNH</text>
+<rect x="1194.0" y="502.0" width="172" height="56" rx="8" fill="#4f9be8" stroke="#263238" stroke-opacity="0.18"/>
+<text x="1280.0" y="537.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="700" fill="#ffffff">Technology</text>
+<circle cx="1186.2" cy="430.0" r="36" fill="#ffffff" stroke="#4f9be8" stroke-width="5"/>
+<text x="1186.2" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">AAPL</text>
+<circle cx="1373.8" cy="430.0" r="36" fill="#ffffff" stroke="#4f9be8" stroke-width="5"/>
+<text x="1373.8" y="437.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">MSFT</text>
+<circle cx="1280.0" cy="655.0" r="36" fill="#ffffff" stroke="#4f9be8" stroke-width="5"/>
+<text x="1280.0" y="662.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">NVDA</text>
+<text x="800.0" y="908.0" text-anchor="middle" font-family="Segoe UI, Arial, sans-serif" font-size="18" font-weight="500" fill="#667085">12 stock nodes | 4 sector nodes | 22 stock-correlation edges</text>
+<text x="330.0" y="960.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="17" font-weight="700" fill="#263238">Legend</text>
+<line x1="440" y1="954" x2="494" y2="954" stroke="#8c97a3" stroke-width="3" stroke-opacity="0.55"/>
+<text x="504.0" y="960.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#667085">stock-sector</text>
+<line x1="650" y1="954" x2="704" y2="954" stroke="#168363" stroke-width="5" stroke-linecap="round"/>
+<text x="714.0" y="960.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#667085">positive corr</text>
+<line x1="870" y1="954" x2="924" y2="954" stroke="#c74343" stroke-width="5" stroke-linecap="round"/>
+<text x="934.0" y="960.0" text-anchor="start" font-family="Segoe UI, Arial, sans-serif" font-size="15" font-weight="500" fill="#667085">negative corr</text>
+</svg>

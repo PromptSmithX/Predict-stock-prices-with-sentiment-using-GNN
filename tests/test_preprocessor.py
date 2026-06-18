@@ -5,6 +5,7 @@ import pandas as pd
 
 from src.data_pipeline.preprocessor import (
     OHLCV_FEATURE_COLUMNS,
+    add_next_day_return_label,
     add_ohlcv_stock_features,
 )
 
@@ -92,6 +93,102 @@ class TestOhlcvStockFeatures(unittest.TestCase):
 
         with self.assertRaisesRegex(ValueError, "fill_method must be one of"):
             add_ohlcv_stock_features(df, fill_method="median")
+
+
+class TestNextDayReturnLabel(unittest.TestCase):
+    def test_label_is_computed_per_ticker_and_preserves_row_order(self):
+        stock_df = pd.DataFrame(
+            {
+                "date": [
+                    "2024-01-03",
+                    "2024-01-01",
+                    "2024-01-01",
+                    "2024-01-03",
+                ],
+                "ticker": ["AAA", "BBB", "AAA", "BBB"],
+                "close": [110.0, 50.0, 100.0, 45.0],
+            }
+        )
+
+        labeled = add_next_day_return_label(stock_df)
+
+        self.assertEqual(labeled["ticker"].tolist(), ["AAA", "BBB", "AAA", "BBB"])
+        self.assertTrue(pd.isna(labeled.loc[0, "label"]))
+        self.assertAlmostEqual(labeled.loc[1, "label"], -0.10)
+        self.assertAlmostEqual(labeled.loc[2, "label"], 0.10)
+        self.assertTrue(pd.isna(labeled.loc[3, "label"]))
+
+    def test_label_helper_does_not_mutate_input(self):
+        stock_df = pd.DataFrame(
+            {
+                "date": ["2024-01-01", "2024-01-02"],
+                "ticker": ["AAA", "AAA"],
+                "close": [100.0, 110.0],
+            }
+        )
+        original = stock_df.copy(deep=True)
+
+        add_next_day_return_label(stock_df)
+
+        pd.testing.assert_frame_equal(stock_df, original)
+
+    def test_existing_label_is_preserved_by_default(self):
+        stock_df = pd.DataFrame(
+            {
+                "date": ["2024-01-01", "2024-01-02"],
+                "ticker": ["AAA", "AAA"],
+                "close": [100.0, 110.0],
+                "label": [0.123, 0.456],
+            }
+        )
+
+        labeled = add_next_day_return_label(stock_df)
+
+        self.assertEqual(labeled["label"].tolist(), [0.123, 0.456])
+
+    def test_existing_label_can_be_overwritten(self):
+        stock_df = pd.DataFrame(
+            {
+                "date": ["2024-01-01", "2024-01-02"],
+                "ticker": ["AAA", "AAA"],
+                "close": [100.0, 110.0],
+                "label": [0.123, 0.456],
+            }
+        )
+
+        labeled = add_next_day_return_label(stock_df, overwrite_existing=True)
+
+        self.assertAlmostEqual(labeled.loc[0, "label"], 0.10)
+        self.assertTrue(pd.isna(labeled.loc[1, "label"]))
+
+    def test_duplicate_date_ticker_rows_raise_clear_error(self):
+        stock_df = pd.DataFrame(
+            {
+                "date": ["2024-01-01", "2024-01-01"],
+                "ticker": ["AAA", "AAA"],
+                "close": [100.0, 110.0],
+            }
+        )
+
+        with self.assertRaisesRegex(ValueError, "duplicate date/ticker"):
+            add_next_day_return_label(stock_df)
+
+    def test_zero_and_invalid_close_values_do_not_create_infinite_labels(self):
+        stock_df = pd.DataFrame(
+            {
+                "date": ["2024-01-01", "2024-01-02", "2024-01-03"],
+                "ticker": ["AAA", "AAA", "AAA"],
+                "close": [0.0, 110.0, "invalid"],
+            }
+        )
+
+        labeled = add_next_day_return_label(stock_df)
+        label_values = labeled["label"].to_numpy(dtype=float)
+
+        self.assertFalse(np.isinf(label_values).any())
+        self.assertTrue(pd.isna(labeled.loc[0, "label"]))
+        self.assertTrue(pd.isna(labeled.loc[1, "label"]))
+        self.assertTrue(pd.isna(labeled.loc[2, "label"]))
 
 
 if __name__ == "__main__":

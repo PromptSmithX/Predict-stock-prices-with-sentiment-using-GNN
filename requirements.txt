@@ -1,6 +1,7 @@
 numpy
 pandas
 pandas_datareader
+Pillow
 requests
 torch
 torch-geometric

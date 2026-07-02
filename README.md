@@ -457,4 +457,6 @@ The committed top-three, zero-fee backtest covers 114 signal dates from 2025-12-
 | Train | `pipelines/train_hgt_lstm.py` |
 | Historical inference/backtest | `pipelines/infer.py` |
 | Live CLI prediction | `pipelines/live_predict.py` |
-| Live web UI | `apps/streamlit_live_demo.py` |
+| Live web UI | `apps/streamlit_live_demo.py` |## Contributors
+
+- **quangminh01112006** — Data Engineer: multi-source data pipeline (Alpha Vantage, yfinance, Finnhub), sector-news crawling with API key rotation and checkpoint/resume logic.

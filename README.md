@@ -1,4 +1,4 @@
-# Stock Return Prediction with Sentiment-Aware Heterogeneous GNNs
+## Stock Return Prediction with Sentiment-Aware Heterogeneous GNNs
 
 An end-to-end research project for predicting **next-trading-session stock returns** by combining market data, financial-news sentiment, sector context, graph neural networks, and temporal sequence modeling.
 
